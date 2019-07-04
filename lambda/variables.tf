@@ -18,3 +18,16 @@ variable "s3_bucket_name" {
 variable "s3_key" {
     description = "The object key that contains the function deployment package"
 }
+
+variable "function_name" {
+    description = "The name of the function"
+}
+
+variable "function_handler" {
+    description = "The entry point for the function"
+}
+
+variable "function_runtime" {
+    description = "The runtime language for the function"
+    type = "string"   
+}

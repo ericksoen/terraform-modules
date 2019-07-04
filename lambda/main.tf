@@ -1,13 +1,27 @@
+locals {
+  supported_runtimes = {
+    "nodejs10.x" = "nodejs10.x"
+    "nodejs8.10" = "nodejs8.10"
+    "python3.7" = "python3.7"
+    "python3.6" = "python3.6"
+    "python2.7" = "python2.7"
+    "go1.x" = "go1.x"
+    "dotnetcore2.1" = "dotnetcore2.1"
+    "dotnetcore1.0" = "dotnetcore1.0"
+  }
+
+  selected_runtime = "${local.supported_runtimes[var.function_handler]}"
+}
 resource "aws_lambda_function" "test_lambda" {
-  function_name = "BookApiLambda"
+  function_name = "${var.function_name}"
 
   s3_bucket = "${var.s3_bucket_name}"
   s3_key = "${var.s3_key}"
 
   role          = "${aws_iam_role.lambda.arn}"
-  handler       = "index.handler"
+  handler       = "${var.function_handler}"
 
-  runtime = "nodejs10.x"
+  runtime = "${local.selected_runtime}"
 }
 
 resource "aws_iam_role" "lambda" {
