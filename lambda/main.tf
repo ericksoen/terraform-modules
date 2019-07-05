@@ -25,7 +25,7 @@ resource "aws_lambda_function" "test_lambda" {
 }
 
 resource "aws_iam_role" "lambda" {
-  name = "lambda-role"
+  name = "${replace(var.function_name, "_", "-")}-role"
   path = "/service-role/"
 
   assume_role_policy = "${data.aws_iam_policy_document.assume_role_policy.json}"
@@ -75,7 +75,7 @@ resource "aws_iam_role_policy_attachment" "provided_policy_attachments" {
 }
 
 resource "aws_iam_policy" "cloudwatch_policy" {
-    name = "cloudwatch_logs"
+    name_prefix = "cloudwatch_logs"
     policy = "${data.aws_iam_policy_document.cloudwatch_logs.json}"
 }
 resource "aws_iam_role_policy_attachment" "cloudwatch_log_attach" {
