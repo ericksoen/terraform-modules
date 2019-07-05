@@ -10,7 +10,7 @@ locals {
     "dotnetcore1.0" = "dotnetcore1.0"
   }
 
-  selected_runtime = "${local.supported_runtimes[var.function_handler]}"
+  selected_runtime = "${local.supported_runtimes[var.function_runtime]}"
 }
 resource "aws_lambda_function" "test_lambda" {
   function_name = "${var.function_name}"
@@ -46,7 +46,10 @@ data "aws_iam_policy_document" "assume_role_policy" {
   }
 }
 
-
+resource "aws_cloudwatch_log_group" "logs" {
+    name = "/aws/lambda/${aws_lambda_function.test_lambda.function_name}"
+    retention_in_days = 7
+}
 
 data "aws_iam_policy_document" "cloudwatch_logs" {
     statement {
@@ -58,19 +61,7 @@ data "aws_iam_policy_document" "cloudwatch_logs" {
         ]
 
         resources = [
-            "arn:aws:logs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:log-group:/aws/lambda/${aws_lambda_function.test_lambda.function_name}:*"
-        ]
-    }
-
-    statement {
-        effect = "Allow"
-
-        actions = [
-            "logs:CreateLogGroup"
-        ]
-
-        resources = [
-            "arn:aws:logs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:*"
+            "arn:aws:logs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:log-group:*"
         ]
     }
 }
@@ -99,9 +90,4 @@ resource "aws_lambda_permission" "apigw_lambda" {
     principal = "apigateway.amazonaws.com"
 
     source_arn = "arn:aws:execute-api:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:${var.api_gateway_id}/*"
-}
-
-resource "aws_cloudwatch_log_group" "logs" {
-    name = "/aws/lambda/${aws_lambda_function.test_lambda.function_name}"
-    retention_in_days = 7
 }
