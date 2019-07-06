@@ -17,6 +17,8 @@ resource "aws_lambda_function" "test_lambda" {
 
   s3_bucket = "${var.s3_bucket_name}"
   s3_key = "${var.s3_key}"
+  s3_object_version = "${var.s3_object_version}"
+  
 
   role          = "${aws_iam_role.lambda.arn}"
   handler       = "${var.function_handler}"

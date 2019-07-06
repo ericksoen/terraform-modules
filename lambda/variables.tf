@@ -19,6 +19,10 @@ variable "s3_key" {
     description = "The object key that contains the function deployment package"
 }
 
+variable "s3_object_version" {
+    description = "The object version id to associate with the lambda"
+}
+
 variable "function_name" {
     description = "The name of the function"
 }
