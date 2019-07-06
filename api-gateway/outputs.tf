@@ -5,6 +5,6 @@ output "invoke_url" {
     value = "${aws_api_gateway_deployment.deployment.invoke_url}"
 }
 
-# output "gateway_integration_uri" {
-#     value = "${aws_api_gateway_integration.demo_integration.uri}"
-# }
+output "gateway_integration_uri" {
+    value = "${aws_api_gateway_integration.demo_integration.uri}"
+}
