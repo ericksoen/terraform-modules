@@ -22,6 +22,8 @@ resource "aws_lambda_function" "test_lambda" {
   handler       = "${var.function_handler}"
 
   runtime = "${local.selected_runtime}"
+
+  publish = true
 }
 
 resource "aws_iam_role" "lambda" {
