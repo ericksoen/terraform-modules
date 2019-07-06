@@ -1,6 +1,6 @@
 resource "aws_api_gateway_rest_api" "demo_api" {
-  name        = "BooksApiLambda"
-  description = "Get books"
+  name        = "${var.gateway_name}"
+  description = "${var.gateway_description}"
 }
 
 resource "aws_api_gateway_resource" "demo_resource" {
