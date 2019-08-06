@@ -11,6 +11,7 @@ variable "gateway_name" {
     description = "The name to assign to the API gateway"
 }
 
-variable "gateway_description"{
+variable "gateway_description" {
     description = "The purpose of the gateway"
-} 
+}
+
