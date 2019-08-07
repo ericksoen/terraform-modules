@@ -23,7 +23,6 @@ variable "policy_arns" {
 variable "policy_arn_count" {
   description = "The number of policy ARNs that the lambda can use"
   type        = "number"
-  default     = 0
 }
 
 variable "s3_bucket_name" {
@@ -68,4 +67,10 @@ variable "function_timeout" {
   description = "The default timeout your lambda should use"
   type        = "string"
   default     = "3"
+}
+
+variable "request_parameters" {
+  description = "Parameters to associate with the request, e.g., method.request.querystring.bucket = true"
+  type        = "map"
+  default     = {}
 }

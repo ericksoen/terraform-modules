@@ -116,10 +116,7 @@ resource "aws_api_gateway_method" "method" {
   http_method   = "${var.http_method}"
   authorization = "NONE"
 
-  request_parameters = {
-    "method.request.querystring.bucket" = true
-    "method.request.querystring.key"    = true
-  }
+  request_parameters = "${var.request_parameters}"
 }
 
 resource "aws_api_gateway_integration" "demo_integration" {
