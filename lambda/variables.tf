@@ -17,6 +17,7 @@ variable "http_method" {
 variable "policy_arns" {
   description = "The policy ARNs that the lambda can use" # TODO: Rough
   type        = "list"
+  default     = []
 }
 
 variable "policy_arn_count" {
