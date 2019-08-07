@@ -22,7 +22,8 @@ variable "policy_arns" {
 
 variable "policy_arn_count" {
   description = "The number of policy ARNs that the lambda can use"
-  type        = "number"
+  type        = "string"
+  default     = "0"
 }
 
 variable "s3_bucket_name" {
