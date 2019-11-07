@@ -31,6 +31,8 @@ resource "aws_lambda_function" "test_lambda" {
     variables = "${var.environment_variables}"
   }
 
+  tags = "${var.function_tags}"
+
   publish = "${var.should_publish_version}"
 }
 

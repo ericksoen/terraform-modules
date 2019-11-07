@@ -75,3 +75,9 @@ variable "request_parameters" {
   type        = "map"
   default     = {}
 }
+
+variable "function_tags" {
+  description = "Tags to add to the function"
+  type        = "map"
+  default     = {}
+}
