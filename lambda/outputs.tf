@@ -9,3 +9,7 @@ output "lambda_version" {
 output "lambda_source_code_hash" {
   value = "${aws_lambda_function.test_lambda.source_code_hash}"
 }
+
+output "lambda_function_name" {
+  value = "${aws_lambda_function.test_lambda.function_name}"
+}
