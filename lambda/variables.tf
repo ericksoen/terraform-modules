@@ -81,3 +81,9 @@ variable "function_tags" {
   type        = "map"
   default     = {}
 }
+
+variable "cloudwatch_log_retention_period" {
+  description = "The length in days to retain Cloudwatch Logs for this Lambda"
+  type        = "string"
+  default     = "10"
+}

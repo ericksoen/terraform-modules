@@ -60,7 +60,7 @@ data "aws_iam_policy_document" "assume_role_policy" {
 
 resource "aws_cloudwatch_log_group" "logs" {
   name              = "/aws/lambda/${aws_lambda_function.test_lambda.function_name}"
-  retention_in_days = 7
+  retention_in_days = "${var.cloudwatch_log_retention_period}"
 }
 
 data "aws_iam_policy_document" "cloudwatch_logs" {
